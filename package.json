@@ -1,0 +1,33 @@
+{
+  "name": "react-figure-ref",
+  "version": "1.0.0",
+  "description": "A react component for working with figures and their references (like in LaTeX).",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "figure",
+    "latex like",
+    "figure ref",
+    "scientific"
+  ],
+  "author": {
+    "name": "Sergej Görzen",
+    "email": "sergej.goerzen@gmail.com",
+    "homepage": "https://sgoerzen.de/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
+  }
+}
