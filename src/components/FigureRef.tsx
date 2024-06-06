@@ -1,9 +1,10 @@
+import React from "react";
 
-interface FigureRefProps {
+export interface FigureRefProps {
     children: string;
     label: string;
 }
 
-export default function FigureRef({children, label}: FigureRefProps) {
+export function FigureRef({children, label}: FigureRefProps) {
     return <a href={'#' + label}>{children}</a>;
 }

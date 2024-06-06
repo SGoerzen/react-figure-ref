@@ -1,12 +1,14 @@
-import Figure from "./components/Figure";
-import FigureRef from "./components/FigureRef";
+import React from "react";
 
-interface FmFigureProps {
+import {Figure} from "./components/Figure";
+import {FigureRef} from "./components/FigureRef";
+
+export interface FmFigureProps {
     caption: string;
     label: string
 }
 
-interface FmFigureRefProps {
+export interface FmFigureRefProps {
     label: string;
 }
 

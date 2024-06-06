@@ -1,11 +1,12 @@
+import React from "react";
 
-interface FigureProps {
+export interface FigureProps {
     src: string;
     caption: React.ReactElement;
     label?: string
 }
 
-export default function Figure({src, caption, label}: FigureProps) {
+export function Figure({src, caption, label}: FigureProps) {
     label = (label ?? "").trim().split(" ").join("-");
     return <figure id={label}>
         <img src={src} alt={'Figure ' + label }/>
