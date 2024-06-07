@@ -1,14 +1,11 @@
-import React, { CSSProperties, HTMLProps } from "react";
-export interface FmFigureProps {
+import React from "react";
+import { FigureProps } from "./components/Figure";
+import { FigureRefProps } from "./components/FigureRef";
+export type FmFigureProps = Omit<FigureProps, "src" | "label" | "caption"> & {
     caption: string;
     label: string;
-    style?: CSSProperties;
-    className?: string;
-    alt?: string;
-}
-export interface FmFigureRefProps extends HTMLProps<HTMLAnchorElement> {
-    label: string;
-}
+};
+export type FmFigureRefProps = Omit<FigureRefProps, "children">;
 type FmConstructorProps = {
     figures: {
         label: string;
@@ -22,6 +19,6 @@ export declare class FigureManager {
     private _figures;
     constructor({ figures, prefix }: FmConstructorProps);
     FigureRef: ({ label, ...props }: FmFigureRefProps) => React.JSX.Element;
-    Figure: ({ caption, label, style, className, alt }: FmFigureProps) => React.JSX.Element;
+    Figure: ({ caption, label, ...props }: FmFigureProps) => React.JSX.Element;
 }
 export {};

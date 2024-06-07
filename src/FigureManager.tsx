@@ -1,20 +1,14 @@
-import React, {CSSProperties, HTMLProps} from "react";
+import React from "react";
 
-import {Figure} from "./components/Figure";
-import {FigureRef} from "./components/FigureRef";
+import {Figure, FigureProps} from "./components/Figure";
+import {FigureRef, FigureRefProps} from "./components/FigureRef";
 
-export interface FmFigureProps {
+export type FmFigureProps = Omit<FigureProps, "src" | "label" | "caption"> & {
     caption: string;
     label: string
-
-    style?: CSSProperties;
-    className?: string;
-    alt?: string;
 }
 
-export interface FmFigureRefProps extends HTMLProps<HTMLAnchorElement> {
-    label: string;
-}
+export type FmFigureRefProps = Omit<FigureRefProps, "children">;
 
 type FmConstructorProps = {figures: {label: string, imageSrc: string}[], prefix?: string};
 
@@ -39,12 +33,12 @@ export class FigureManager {
         });
     }
 
-    Figure = ({caption, label, style, className, alt}: FmFigureProps) => {
+    Figure = ({caption, label, ...props}: FmFigureProps) => {
         const figure = this._figures[label];
         return Figure({
             src: figure.src,
             caption: <span><strong>{this._prefix + ' ' + figure.num}:</strong> {caption}</span>, label,
-            style, className, alt
+            ...props
         });
     }
 
