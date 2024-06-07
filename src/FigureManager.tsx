@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties, HTMLProps} from "react";
 
 import {Figure} from "./components/Figure";
 import {FigureRef} from "./components/FigureRef";
@@ -6,9 +6,13 @@ import {FigureRef} from "./components/FigureRef";
 export interface FmFigureProps {
     caption: string;
     label: string
+
+    style?: CSSProperties;
+    className?: string;
+    alt?: string;
 }
 
-export interface FmFigureRefProps {
+export interface FmFigureRefProps extends HTMLProps<HTMLAnchorElement> {
     label: string;
 }
 
@@ -26,14 +30,22 @@ export class FigureManager {
         });
     }
 
-    FigureRef = ({label}: FmFigureRefProps) => {
+    FigureRef = ({label, ...props}: FmFigureRefProps) => {
         const figure = this._figures[label];
-        return FigureRef({children: this._prefix + ' ' + figure.num, label});
+        return FigureRef({
+            ...props,
+            children: this._prefix + ' ' + figure.num,
+            label
+        });
     }
 
-    Figure = ({caption, label}: FmFigureProps) => {
+    Figure = ({caption, label, style, className, alt}: FmFigureProps) => {
         const figure = this._figures[label];
-        return Figure({src: figure.src, caption: <span><strong>{this._prefix + ' ' + figure.num}:</strong> {caption}</span>, label});
+        return Figure({
+            src: figure.src,
+            caption: <span><strong>{this._prefix + ' ' + figure.num}:</strong> {caption}</span>, label,
+            style, className, alt
+        });
     }
 
 }
