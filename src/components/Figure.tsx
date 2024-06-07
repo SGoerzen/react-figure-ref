@@ -13,14 +13,29 @@ export interface FigureProps {
     figureStyle?: CSSProperties;
     className?: string;
     alt?: string;
-    align?: Property.TextAlign
+    align?: Property.TextAlign,
+
+    autoPlay?: boolean;
 }
 
-export function Figure({src, caption, label, style, figureStyle, className, alt, align, width, maxWidth}: FigureProps) {
+export function Figure({src, caption, label, style, figureStyle, className, alt, align, width, maxWidth, autoPlay}: FigureProps) {
     label = (label ?? "").trim().split(" ").join("-");
+
+    const ext = src.split('.').pop()!.toLowerCase();
+
+    const isImage = ["jpg", "jpeg", "png", "gif", "bmp", "svg"].includes(ext);
+    const isVideo = ["mp4", "mov", "webm", "avi"].includes(ext);
+
+    if (!isImage && !isVideo) {
+        throw new Error("Invalid file extension " + ext);
+    }
+
     return <div className={'figure ' + (className ?? "")} style={{position: "relative", textAlign: (align ?? "center"), ...style}}>
         <figure id={label} style={{width, maxWidth, display: "inline-block", ...figureStyle}}>
-            <img className="figure-image" src={src} alt={alt ?? 'Figure ' + label}/>
+
+            {isImage && <img className="figure-image" src={src} alt={alt ?? 'Figure ' + label}/>}
+            {isVideo && <video className="figure-video" src={src} autoPlay={autoPlay} /> }
+
             <figcaption className="figure-caption" style={{textAlign: "center"}}>{caption}</figcaption>
         </figure>
     </div>;
