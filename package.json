@@ -1,6 +1,6 @@
 {
   "name": "react-figure-ref",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A react component for working with figures and their references (like in LaTeX).",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

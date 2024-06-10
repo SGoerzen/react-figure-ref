@@ -12,5 +12,6 @@ export interface FigureProps {
     alt?: string;
     align?: Property.TextAlign;
     autoPlay?: boolean;
+    loop?: boolean;
 }
-export declare function Figure({ src, caption, label, style, figureStyle, className, alt, align, width, maxWidth, autoPlay }: FigureProps): React.JSX.Element;
+export declare function Figure({ src, caption, label, style, figureStyle, className, alt, align, width, maxWidth, autoPlay, loop }: FigureProps): React.JSX.Element;

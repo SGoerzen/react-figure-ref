@@ -16,9 +16,10 @@ export interface FigureProps {
     align?: Property.TextAlign,
 
     autoPlay?: boolean;
+    loop?: boolean;
 }
 
-export function Figure({src, caption, label, style, figureStyle, className, alt, align, width, maxWidth, autoPlay}: FigureProps) {
+export function Figure({src, caption, label, style, figureStyle, className, alt, align, width, maxWidth, autoPlay, loop}: FigureProps) {
     label = (label ?? "").trim().split(" ").join("-");
 
     const ext = src.split('.').pop()!.toLowerCase();
@@ -34,7 +35,7 @@ export function Figure({src, caption, label, style, figureStyle, className, alt,
         <figure id={label} style={{width, maxWidth, display: "inline-block", ...figureStyle}}>
 
             {isImage && <img className="figure-image" src={src} alt={alt ?? 'Figure ' + label}/>}
-            {isVideo && <video className="figure-video" src={src} autoPlay={autoPlay} /> }
+            {isVideo && <video className="figure-video" src={src} autoPlay={autoPlay} loop={loop}>Your browser does not support the video tag.</video> }
 
             <figcaption className="figure-caption" style={{textAlign: "center"}}>{caption}</figcaption>
         </figure>
